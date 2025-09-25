@@ -11,7 +11,7 @@ import InTurn6 from "@/assets/InTurn/6.png";
 import InTurn7 from "@/assets/InTurn/7.png";
 import InTurn8 from "@/assets/InTurn/8.png";
 import InTurn9 from "@/assets/InTurn/9.png";
-import Warcha0 from "@/assets/Warcha/0.webp";
+import Warcha0 from "@/assets/Warcha/0.png";
 import Warcha1 from "@/assets/Warcha/1.png";
 import Warcha2 from "@/assets/Warcha/2.png";
 import Warcha3 from "@/assets/Warcha/3.png";
