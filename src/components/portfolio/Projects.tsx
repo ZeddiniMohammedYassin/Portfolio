@@ -1,6 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Users, Workflow, ChevronRight, Star, TrendingUp, Zap, Award, Eye, Code2, ZoomIn } from "lucide-react";
+import InTurn0 from "@/assets/InTurn/0.webp";
+import InTurn1 from "@/assets/InTurn/1.png";
+import InTurn2 from "@/assets/InTurn/2.png";
+import InTurn3 from "@/assets/InTurn/3.png";
+import InTurn4 from "@/assets/InTurn/4.png";
+import InTurn5 from "@/assets/InTurn/5.png";
+import InTurn6 from "@/assets/InTurn/6.png";
+import InTurn7 from "@/assets/InTurn/7.png";
+import InTurn8 from "@/assets/InTurn/8.png";
+import InTurn9 from "@/assets/InTurn/9.png";
+import Warcha0 from "@/assets/Warcha/0.webp";
+import Warcha1 from "@/assets/Warcha/1.png";
+import Warcha2 from "@/assets/Warcha/2.png";
+import Warcha3 from "@/assets/Warcha/3.png";
+import Warcha4 from "@/assets/Warcha/4.png";
+import Warcha5 from "@/assets/Warcha/5.png";
+import Warcha6 from "@/assets/Warcha/6.png";
+import Warcha7 from "@/assets/Warcha/7.png";
+import Warcha8 from "@/assets/Warcha/8.png";
+import Warcha9 from "@/assets/Warcha/9.png";
+import Warcha10 from "@/assets/Warcha/10.png";
+import Warcha11 from "@/assets/Warcha/11.png";
+import Warcha12 from "@/assets/Warcha/12.png";
+import Warcha13 from "@/assets/Warcha/13.png";
+import Warcha14 from "@/assets/Warcha/14.png";
 
 const Projects = () => {
   const [visibleProjects, setVisibleProjects] = useState(new Set());
@@ -42,16 +67,16 @@ const Projects = () => {
       status: "Production",
       year: "2024",
       images: [
-        { src: './src/assets/InTurn/0.webp', alt: 'Inturn Platform 1' },
-        { src: './src/assets/InTurn/1.png', alt: 'Inturn Platform 2' },
-        { src: './src/assets/InTurn/2.png', alt: 'Inturn Platform 3' },
-        { src: './src/assets/InTurn/3.png', alt: 'Inturn Platform 4' },
-        { src: './src/assets/InTurn/4.png', alt: 'Inturn Platform 5' },
-        { src: './src/assets/InTurn/5.png', alt: 'Inturn Platform 6' },
-        { src: './src/assets/InTurn/6.png', alt: 'Inturn Platform 7' },
-        { src: './src/assets/InTurn/7.png', alt: 'Inturn Platform 8' },
-        { src: './src/assets/InTurn/8.png', alt: 'Inturn Platform 9' },
-        { src: './src/assets/InTurn/9.png', alt: 'Inturn Platform 10' },
+        { src: InTurn0, alt: "Inturn Platform 1" },
+        { src: InTurn1, alt: "Inturn Platform 2" },
+        { src: InTurn2, alt: "Inturn Platform 3" },
+        { src: InTurn3, alt: "Inturn Platform 4" },
+        { src: InTurn4, alt: "Inturn Platform 5" },
+        { src: InTurn5, alt: "Inturn Platform 6" },
+        { src: InTurn6, alt: "Inturn Platform 7" },
+        { src: InTurn7, alt: "Inturn Platform 8" },
+        { src: InTurn8, alt: "Inturn Platform 9" },
+        { src: InTurn9, alt: "Inturn Platform 10" },
       ]
     },
     {
@@ -87,21 +112,21 @@ const Projects = () => {
       status: "Live",
       year: "2025",
       images: [
-        { src: './src/assets/Warcha/2.png', alt: 'Warcha SaaS 1' },
-        { src: './src/assets/Warcha/0.png', alt: 'Warcha SaaS 2' },
-        { src: './src/assets/Warcha/1.png', alt: 'Warcha SaaS 3' },
-        { src: './src/assets/Warcha/3.png', alt: 'Warcha SaaS 4' },
-        { src: './src/assets/Warcha/4.png', alt: 'Warcha SaaS 5' },
-        { src: './src/assets/Warcha/5.png', alt: 'Warcha SaaS 6' },
-        { src: './src/assets/Warcha/6.png', alt: 'Warcha SaaS 7' },
-        { src: './src/assets/Warcha/7.png', alt: 'Warcha SaaS 8' },
-        { src: './src/assets/Warcha/8.png', alt: 'Warcha SaaS 9' },
-        { src: './src/assets/Warcha/9.png', alt: 'Warcha SaaS 10' },
-        { src: './src/assets/Warcha/10.png', alt: 'Warcha SaaS 11' },
-        { src: './src/assets/Warcha/11.png', alt: 'Warcha SaaS 12' },
-        { src: './src/assets/Warcha/12.png', alt: 'Warcha SaaS 13' },
-        { src: './src/assets/Warcha/13.png', alt: 'Warcha SaaS 14' },
-        { src: './src/assets/Warcha/14.png', alt: 'Warcha SaaS 15' },
+                { src: Warcha0, alt: "Warcha Platform 1" },
+                { src: Warcha1, alt: "Warcha Platform 2" },
+                { src: Warcha2, alt: "Warcha Platform 3" },
+                { src: Warcha3, alt: "Warcha Platform 4" },
+                { src: Warcha4, alt: "Warcha Platform 5" },
+                { src: Warcha5, alt: "Warcha Platform 6" },
+                { src: Warcha6, alt: "Warcha Platform 7" },
+                { src: Warcha7, alt: "Warcha Platform 8" },
+                { src: Warcha8, alt: "Warcha Platform 9" },
+                { src: Warcha9, alt: "Warcha Platform 10" },
+                { src: Warcha10, alt: "Warcha Platform 11" },
+                { src: Warcha11, alt: "Warcha Platform 12" },
+                { src: Warcha12, alt: "Warcha Platform 13" },
+                { src: Warcha13, alt: "Warcha Platform 14" },
+                { src: Warcha14, alt: "Warcha Platform 15" },
       ]
     }
   ];
