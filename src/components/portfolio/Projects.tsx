@@ -62,7 +62,7 @@ const Projects = () => {
       icon: Users,
       primaryColor: "from-blue-500 to-purple-600",
       accentColor: "blue",
-      github: "https://github.com",
+      github: "https://github.com/ZeddiniMohammedYassin/InTurn-Internship-Matching-Website",
       live: "https://demo.com",
       status: "Production",
       year: "2024",
@@ -108,7 +108,7 @@ const Projects = () => {
       primaryColor: "from-emerald-500 to-teal-600",
       accentColor: "emerald",
       github: "https://github.com",
-      live: "https://warcha.com",
+      live: "https://warcha.redig.io",
       status: "Live",
       year: "2025",
       images: [

@@ -128,16 +128,21 @@ const Hero = () => {
               className="group bg-slate-800/30 backdrop-blur-sm border-slate-600/50 text-slate-300 hover:bg-slate-800/50 hover:border-blue-400/50 hover:text-blue-400 transition-all duration-300 hover:scale-105 px-8"
             >
               <Download size={16} className="mr-2 group-hover:translate-y-1 transition-transform duration-300" />
+              <a 
+                href="/resume.pdf" 
+                download 
+              >
               Resume
+              </a>
             </Button>
           </div>
           
           {/* Enhanced Social Links */}
           <div className={`flex justify-center gap-4 mb-16 transition-all duration-1000 delay-1200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             {[
-              { icon: Github, href: "https://github.com", color: "hover:text-white hover:bg-gray-800" },
-              { icon: Linkedin, href: "https://linkedin.com", color: "hover:text-blue-400 hover:bg-blue-500/10" },
-              { icon: Mail, href: "mailto:your.email@example.com", color: "hover:text-emerald-400 hover:bg-emerald-500/10" }
+              { icon: Github, href: "https://github.com/ZeddiniMohammedYassin", color: "hover:text-white hover:bg-gray-800" },
+              { icon: Linkedin, href: "https://linkedin.com/in/zeddini-mohamed-yassin", color: "hover:text-blue-400 hover:bg-blue-500/10" },
+              { icon: Mail, href: "mailto:mohamedyassin.zeddini@ieee.org", color: "hover:text-emerald-400 hover:bg-emerald-500/10" }
             ].map(({ icon: Icon, href, color }, index) => (
               <a 
                 key={index}

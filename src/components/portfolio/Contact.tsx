@@ -325,10 +325,15 @@ const Contact = () => {
                         variant="outline" 
                         size="lg"
                         className="group bg-slate-800/50 backdrop-blur-sm border-slate-600/50 text-slate-300 hover:bg-slate-800/70 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105"
-                        onClick={() => window.open('#', '_blank')}
+                        onClick={() => window.open('resume.pdf', '_blank')}
                       >
                         <Download className="h-4 w-4 mr-2 group-hover:translate-y-1 transition-transform duration-300" />
-                        Download CV
+                        <a 
+                            href="/resume.pdf" 
+                            download 
+                        >
+                            Download CV
+                        </a>
                       </Button>
                     </div>
                   </div>
