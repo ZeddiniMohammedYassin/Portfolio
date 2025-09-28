@@ -516,51 +516,7 @@ const Projects = () => {
             })}
           </div>
 
-          {/* Enhanced CTA Section */}
-          <div className="text-center mt-24 relative">
-            <div className="bg-slate-800/20 backdrop-blur-sm border border-slate-700/30 rounded-2xl p-12 relative overflow-hidden">
-              {/* Background decoration */}
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5" />
-              
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 mb-6">
-                  <TrendingUp size={16} className="text-emerald-400" />
-                  <span className="text-slate-300 text-sm font-medium">Ready for more?</span>
-                </div>
-                
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Let's Build Something 
-                  <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"> Amazing</span>
-                </h3>
-                
-                <p className="text-slate-400 mb-8 text-lg max-w-2xl mx-auto">
-                  Have a project in mind? Want to discuss opportunities? 
-                  I'm always excited to take on new challenges and create impactful solutions.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    size="lg" 
-                    className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white border-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 px-8"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  >
-                    Let's Connect
-                    <ChevronRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    className="group bg-slate-800/30 backdrop-blur-sm border-slate-600/50 text-slate-300 hover:bg-slate-800/50 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105 px-8"
-                    onClick={() => window.open('mailto:your.email@example.com', '_blank')}
-                  >
-                    <Award size={16} className="mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                    View All Projects
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>

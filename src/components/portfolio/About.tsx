@@ -9,17 +9,17 @@ const About = () => {
   const highlights = [
     {
       icon: Code2,
-      title: "Backend Specialist",
-      description: "Expert in Node.js, Express, and database optimization with focus on scalable architecture",
+      title: "Backend Developement",
+      description: "Hands-on experience in Node.js, Express, and database optimization with focus on scalable architecture",
       color: "blue",
-      stats: "3+ Years"
+      
     },
     {
       icon: Trophy,
       title: "Problem Solver",
       description: "HackerRank certified, IEEEXtreme participant with algorithmic thinking approach",
       color: "yellow",
-      stats: "500+ Problems"
+      stats: "100+ Problems"
     },
     {
       icon: Users,
@@ -168,9 +168,12 @@ const About = () => {
                               <h4 className="font-bold text-white group-hover:text-emerald-400 transition-colors duration-300">
                                 {item.title}
                               </h4>
-                              <span className={`text-xs font-bold px-2 py-1 rounded-full ${colors.bg} ${colors.text}`}>
-                                {item.stats}
-                              </span>
+                              {/* Remove blue placeholder/dot for Backend Developement */}
+                              {item.stats && (
+                                <span className={`text-xs font-bold px-2 py-1 rounded-full ${colors.bg} ${colors.text}`}>
+                                  {item.stats}
+                                </span>
+                              )}
                             </div>
                             <p className="text-slate-400 text-sm leading-relaxed">
                               {item.description}
@@ -181,7 +184,7 @@ const About = () => {
                         {activeCard === index && (
                           <div className="mt-4 pt-4 border-t border-slate-700/50">
                             <div className="text-xs text-slate-500">
-                              Hover effect active - Ready for internship challenges! 🚀
+                              Ready for internship challenges! 🚀
                             </div>
                           </div>
                         )}
@@ -214,29 +217,6 @@ const About = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Call to Action for Internship */}
-          <div className={`text-center mt-16 transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="bg-gradient-to-r from-slate-800/50 to-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5" />
-              
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/30 mb-4">
-                  <Rocket size={16} className="text-emerald-400" />
-                  <span className="text-emerald-400 text-sm font-medium">Ready for Internship</span>
-                </div>
-                
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                  Let's Build the Future Together
-                </h3>
-                
-                <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-                  I'm excited to bring my technical skills, problem-solving mindset, and eagerness to learn 
-                  to your team. Ready to contribute from day one while growing alongside experienced professionals.
-                </p>
               </div>
             </div>
           </div>
