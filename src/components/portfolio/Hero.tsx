@@ -171,17 +171,11 @@ const Hero = () => {
           </button>
         </div>
         
-        {/* Floating Stats Cards */}
-        <div className="absolute top-1/2 left-8 transform -translate-y-1/2 hidden xl:block">
-          <div className={`bg-slate-800/20 backdrop-blur-sm border border-slate-700/30 rounded-lg p-4 transition-all duration-1000 delay-1600 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <div className="text-emerald-400 text-2xl font-bold">3+</div>
-            <div className="text-slate-400 text-sm">Years Experience</div>
-          </div>
-        </div>
+        {/* Floating Stats Card */}
         
         <div className="absolute top-1/2 right-8 transform -translate-y-1/2 hidden xl:block">
           <div className={`bg-slate-800/20 backdrop-blur-sm border border-slate-700/30 rounded-lg p-4 transition-all duration-1000 delay-1800 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <div className="text-cyan-400 text-2xl font-bold">50+</div>
+            <div className="text-cyan-400 text-2xl font-bold">10+</div>
             <div className="text-slate-400 text-sm">Projects Built</div>
           </div>
         </div>

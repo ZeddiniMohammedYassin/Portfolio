@@ -31,10 +31,10 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "zeddini.yessin@example.com",
-      displayValue: "zeddini.yessin@example.com",
+      value: "mohamedyassin.zeddini@ieee.org",
+      displayValue: "mohamedyassin.zeddini@ieee.org",
       description: "Best for internship applications & detailed discussions",
-      action: "mailto:zeddini.yessin@example.com",
+      action: "mailto:mohamedyassin.zeddini@ieee.org",
       color: "emerald",
       priority: "Primary",
       responseTime: "< 6 hours"
@@ -42,10 +42,10 @@ const Contact = () => {
     {
       icon: Linkedin,
       title: "LinkedIn",
-      value: "linkedin.com/in/zeddini-yessin",
-      displayValue: "/in/zeddini-yessin",
+      value: "https://linkedin.com/in/zeddini-mohamed-yassin",
+      displayValue: "/in/zeddini-mohamed-yassin",
       description: "Professional networking & career opportunities",
-      action: "https://linkedin.com/in/zeddini-yessin",
+      action: "https://linkedin.com/in/zeddini-mohamed-yassin",
       color: "blue",
       priority: "Professional",
       responseTime: "< 12 hours"
@@ -53,10 +53,10 @@ const Contact = () => {
     {
       icon: Github,
       title: "GitHub",
-      value: "github.com/zeddini-yessin",
-      displayValue: "/zeddini-yessin",
+      value: "https://github.com/ZeddiniMohammedYassin",
+      displayValue: "/ZeddiniMohammedYassin",
       description: "Code portfolio & open source contributions",
-      action: "https://github.com/zeddini-yessin",
+      action: "https://github.com/ZeddiniMohammedYassin",
       color: "slate",
       priority: "Technical",
       responseTime: "Always Open"
@@ -64,10 +64,10 @@ const Contact = () => {
     {
       icon: Phone,
       title: "WhatsApp",
-      value: "+216 XX XXX XXX",
-      displayValue: "+216 XX XXX XXX",
+      value: "+216 92 945 903",
+      displayValue: "+216 92 945 903",
       description: "Quick questions & immediate communication",
-      action: "https://wa.me/216XXXXXXX",
+      action: "https://wa.me/21692945903",
       color: "green",
       priority: "Urgent",
       responseTime: "< 2 hours"
@@ -99,7 +99,7 @@ const Contact = () => {
     {
       icon: Globe,
       title: "Languages",
-      value: "Arabic, French, English",
+      value: "English, French, Arabic ",
       description: "Multilingual communication",
       color: "blue"
     }
@@ -396,27 +396,7 @@ const Contact = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Response Time Promise */}
-              <div className="text-center relative">
-                <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 backdrop-blur-sm border border-green-500/20 rounded-2xl p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5" />
-                  
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-center gap-2 mb-3">
-                      <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-                      <span className="text-green-400 font-bold text-lg">Fast Response Guaranteed</span>
-                    </div>
-                    <p className="text-slate-400">
-                      I typically respond to internship inquiries within <span className="text-green-400 font-semibold">6 hours</span>
-                    </p>
-                    <p className="text-slate-500 text-sm mt-2">
-                      Available Monday-Friday, 9 AM - 8 PM (GMT+1)
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </div>  
           </div>
 
           {/* Enhanced Footer CTA */}

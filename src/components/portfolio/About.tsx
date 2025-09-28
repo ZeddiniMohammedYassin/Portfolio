@@ -28,13 +28,7 @@ const About = () => {
       color: "green",
       stats: "5+ Projects"
     },
-    {
-      icon: Zap,
-      title: "Performance Driven",
-      description: "Passionate about optimization, achieving 60% performance improvements consistently",
-      color: "purple",
-      stats: "60% Faster"
-    }
+    
   ];
 
   const quickFacts = [
@@ -118,13 +112,21 @@ const About = () => {
                 
                 <div className="space-y-4 text-slate-300">
                   <p className="leading-relaxed">
-                    <span className="text-emerald-400 font-semibold">3+ years</span> of development experience with strong foundation in competitive programming. 
-                    Built production systems serving <span className="text-cyan-400 font-semibold">500+ users</span> with focus on backend optimization and scalable architecture.
+                    I am a  
+                    <span className="text-emerald-400 font-semibold"> third-year Computer Science student
+                      </span> with a strong interest in software development and problem solving.<br /> <br /> My background in  
+                    <span className="text-cyan-400 font-semibold"> competitive programming </span>
+                    has strengthened my ability to design 
+                    <span className="text-cyan-400 font-semibold"> efficient solutions </span>
+                    , while my academic and personal projects have allowed me to apply these skills in practice.<br /> <br /> I have worked on full-stack applications, paying particular attention to 
+                    <span className="text-cyan-400 font-semibold"> backend performance </span>
+                    and the design of reliable database systems. Through these experiences, I have gained proficiency in
+                    <span className="text-white font-medium"> Node.js, Express, and relational databases.</span> <br /> <br /> I am motivated to expand my knowledge further through an internship opportunity, where I can contribute to meaningful projects while continuing to develop my technical and professional skills.
                   </p>
-                  
+                  {/* Back */}
                   <p className="leading-relaxed">
-                    Experienced in <span className="text-white font-medium">full-stack development</span> with specialty in Node.js, Express, and database design. 
-                    Proven track record of delivering <span className="text-purple-400 font-semibold">60% performance improvements</span> through code optimization.
+                     <span className="text-white font-medium"></span>  
+                     <span className="text-purple-400 font-semibold"></span> 
                   </p>
                   
                   <div className="flex items-center gap-2 mt-6 p-4 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 rounded-lg border border-emerald-500/20">
@@ -136,24 +138,7 @@ const About = () => {
                 </div>
               </div>
 
-              {/* Quick Facts */}
-              <div className="bg-slate-800/20 backdrop-blur-sm border border-slate-700/30 rounded-2xl p-6">
-                <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                  <Award className="text-cyan-400" size={20} />
-                  Quick Facts
-                </h4>
-                <div className="grid grid-cols-2 gap-4">
-                  {quickFacts.map((fact, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
-                      <fact.icon size={16} className="text-emerald-400 flex-shrink-0" />
-                      <div>
-                        <div className="text-slate-400 text-xs">{fact.label}</div>
-                        <div className="text-slate-200 text-sm font-medium">{fact.value}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              
             </div>
 
             {/* Highlights & Skills */}

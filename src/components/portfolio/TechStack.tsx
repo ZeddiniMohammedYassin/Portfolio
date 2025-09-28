@@ -86,7 +86,7 @@ const TechStack = () => {
       description: "Algorithms & Data Structures mastery with competitive programming experience",
       icon: Trophy,
       color: "yellow",
-      metric: "500+ Problems Solved",
+      metric: "100+ Problems Solved",
       gradient: "from-yellow-400 to-orange-500"
     },
     {
@@ -99,12 +99,12 @@ const TechStack = () => {
       gradient: "from-blue-400 to-purple-500"
     },
     {
-      title: "Performance Specialist",
-      subtitle: "Optimization Expert",
-      description: "Consistently achieved 60%+ performance improvements in production systems",
+      title: "Team Player",
+      subtitle: "Collaboration Experience",
+      description: "Effectively collaborated across teams to deliver high-impact solutions, fostering communication and teamwork",
       icon: TrendingUp,
       color: "green",
-      metric: "60% Faster Queries",
+      metric: "Cross-functional Success",
       gradient: "from-emerald-400 to-cyan-500"
     },
     {
@@ -113,7 +113,7 @@ const TechStack = () => {
       description: "Built and deployed multiple applications serving hundreds of users",
       icon: Rocket,
       color: "purple",
-      metric: "500+ Users Served",
+      metric: "10+ Projects",
       gradient: "from-purple-400 to-pink-500"
     }
   ];
@@ -397,83 +397,6 @@ const TechStack = () => {
                   </div>
                 );
               })}
-            </div>
-          </div>
-
-          {/* Current Learning Goals */}
-          <div className={`mb-16 transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="bg-slate-800/20 backdrop-blur-sm border border-slate-700/30 rounded-2xl p-8">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-3 flex items-center justify-center gap-3">
-                  <BookOpen className="text-cyan-400" size={28} />
-                  Currently Learning & Growing
-                </h3>
-                <p className="text-slate-400">
-                  Expanding my skillset to stay at the forefront of technology
-                </p>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {learningGoals.map((goal, index) => (
-                  <div key={goal.text} className="flex items-center gap-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105">
-                    <div className="p-3 rounded-lg bg-cyan-500/10">
-                      <goal.icon className="h-5 w-5 text-cyan-400" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-white font-medium">{goal.text}</span>
-                        <span className="text-cyan-400 text-sm font-bold">{goal.progress}%</span>
-                      </div>
-                      <div className="h-2 bg-slate-600 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full transition-all duration-1000"
-                          style={{ width: isVisible ? `${goal.progress}%` : '0%' }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Enhanced Learning Philosophy */}
-          <div className={`text-center transition-all duration-1000 delay-1200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="bg-gradient-to-r from-slate-800/50 to-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-cyan-500/5 to-purple-500/5 animate-pulse" />
-              
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 mb-6">
-                  <Target size={16} className="text-emerald-400" />
-                  <span className="text-emerald-400 text-sm font-medium">Growth Mindset</span>
-                </div>
-                
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Continuous Learning
-                  <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"> Philosophy</span>
-                </h3>
-                
-                <p className="text-slate-400 max-w-3xl mx-auto text-lg leading-relaxed mb-6">
-                  Technology evolves rapidly, and so do I. From mastering new frameworks to 
-                  optimizing performance bottlenecks, I'm constantly expanding my skillset 
-                  to stay at the forefront of web development and deliver cutting-edge solutions.
-                </p>
-                
-                <div className="flex items-center justify-center gap-6 text-sm text-slate-500">
-                  <div className="flex items-center gap-2">
-                    <Timer size={16} className="text-emerald-400" />
-                    <span>4+ Years Experience</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Star size={16} className="text-yellow-400" />
-                    <span>500+ Problems Solved</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 size={16} className="text-green-400" />
-                    <span>Production Ready</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

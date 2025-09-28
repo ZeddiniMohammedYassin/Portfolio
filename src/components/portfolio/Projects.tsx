@@ -35,51 +35,6 @@ const Projects = () => {
   const sectionRef = useRef(null);
   const projects = [
     {
-      id: 1,
-      title: "Inturn Platform",
-      subtitle: "Enterprise Internship Management",
-      description: "Comprehensive platform for managing internship programs with REST API backend, MVC architecture, and MySQL optimization. Features include application tracking, mentor assignment, and performance evaluation.",
-      longDescription: "Built a full-scale internship management system serving 500+ students and 50+ mentors. Implemented complex database relationships, optimized queries for 60% faster load times, and created a robust REST API with proper authentication and authorization.",
-      tags: ["Backend", "Fullstack", "Database"],
-      techStack: ["Node.js", "Express.js", "MySQL", "React", "REST API"],
-      features: [
-        "Student application portal with document upload",
-        "Mentor dashboard for intern evaluation", 
-        "Admin panel for program management",
-        "Real-time notifications and updates",
-        "Advanced reporting and analytics"
-      ],
-      metrics: {
-        users: "500+",
-        performance: "60%",
-        uptime: "99.9%"
-      },
-      metricLabels: {
-        users: "Active Users",
-        performance: "Query Speed ↑",
-        uptime: "System Uptime"
-      },
-      icon: Users,
-      primaryColor: "from-blue-500 to-purple-600",
-      accentColor: "blue",
-      github: "https://github.com/ZeddiniMohammedYassin/InTurn-Internship-Matching-Website",
-      live: "https://demo.com",
-      status: "Production",
-      year: "2024",
-      images: [
-        { src: InTurn0, alt: "Inturn Platform 1" },
-        { src: InTurn1, alt: "Inturn Platform 2" },
-        { src: InTurn2, alt: "Inturn Platform 3" },
-        { src: InTurn3, alt: "Inturn Platform 4" },
-        { src: InTurn4, alt: "Inturn Platform 5" },
-        { src: InTurn5, alt: "Inturn Platform 6" },
-        { src: InTurn6, alt: "Inturn Platform 7" },
-        { src: InTurn7, alt: "Inturn Platform 8" },
-        { src: InTurn8, alt: "Inturn Platform 9" },
-        { src: InTurn9, alt: "Inturn Platform 10" },
-      ]
-    },
-    {
       id: 2,
       title: "Warcha SaaS",
       subtitle: "Smart Repair Shop Platform",
@@ -127,6 +82,51 @@ const Projects = () => {
                 { src: Warcha12, alt: "Warcha Platform 13" },
                 { src: Warcha13, alt: "Warcha Platform 14" },
                 { src: Warcha14, alt: "Warcha Platform 15" },
+      ]
+    },
+    {
+      id: 1,
+      title: "Inturn Platform",
+      subtitle: "Enterprise Internship Management",
+      description: "Comprehensive platform for managing internship programs with REST API backend, MVC architecture, and MySQL optimization. Features include application tracking, mentor assignment, and performance evaluation.",
+      longDescription: "Built a full-scale internship management system serving 500+ students and 50+ mentors. Implemented complex database relationships, optimized queries for 60% faster load times, and created a robust REST API with proper authentication and authorization.",
+      tags: ["Backend", "Fullstack", "Database"],
+      techStack: ["Node.js", "Express.js", "MySQL", "React", "REST API"],
+      features: [
+        "Student application portal with document upload",
+        "Mentor dashboard for intern evaluation", 
+        "Admin panel for program management",
+        "Real-time notifications and updates",
+        "Advanced reporting and analytics"
+      ],
+      metrics: {
+        users: "500+",
+        performance: "60%",
+        uptime: "99.9%"
+      },
+      metricLabels: {
+        users: "Active Users",
+        performance: "Query Speed ↑",
+        uptime: "System Uptime"
+      },
+      icon: Users,
+      primaryColor: "from-blue-500 to-purple-600",
+      accentColor: "blue",
+      github: "https://github.com/ZeddiniMohammedYassin/InTurn-Internship-Matching-Website",
+      live: "https://demo.com",
+      status: "Production",
+      year: "2024",
+      images: [
+        { src: InTurn0, alt: "Inturn Platform 1" },
+        { src: InTurn1, alt: "Inturn Platform 2" },
+        { src: InTurn2, alt: "Inturn Platform 3" },
+        { src: InTurn3, alt: "Inturn Platform 4" },
+        { src: InTurn4, alt: "Inturn Platform 5" },
+        { src: InTurn5, alt: "Inturn Platform 6" },
+        { src: InTurn6, alt: "Inturn Platform 7" },
+        { src: InTurn7, alt: "Inturn Platform 8" },
+        { src: InTurn8, alt: "Inturn Platform 9" },
+        { src: InTurn9, alt: "Inturn Platform 10" },
       ]
     }
   ];
@@ -322,8 +322,8 @@ const Projects = () => {
                           {/* Dark overlay for better contrast */}
                           <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-transparent to-slate-900/60 group-hover/image:from-slate-900/20 transition-all duration-500" />
                           
-                          {/* Zoom indicator */}
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+                          {/* Zoom indicator - always visible */}
+                          <div className="absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-300">
                             <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
                               <ZoomIn className="h-8 w-8 text-white" />
                             </div>
@@ -474,28 +474,34 @@ const Projects = () => {
 
                         {/* Enhanced Actions */}
                         <div className="flex gap-4 pt-4">
-                          <Button 
-                            size="lg"
-                            className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white border-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 flex-1"
-                            asChild
-                          >
-                            <a href={project.live} target="_blank" rel="noopener noreferrer">
-                              <Eye className="h-4 w-4 mr-2" />
-                              View Live
-                              <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                            </a>
-                          </Button>
-                          <Button 
-                            variant="outline" 
-                            size="lg"
-                            className="group bg-slate-800/50 backdrop-blur-sm border-slate-600/50 text-slate-300 hover:bg-slate-800/70 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105"
-                            asChild
-                          >
-                            <a href={project.github} target="_blank" rel="noopener noreferrer">
-                              <Github className="h-4 w-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                              Source
-                            </a>
-                          </Button>
+                          {/* Show View Live only for project 02 (index === 0) */}
+                          {index === 0 && (
+                            <Button 
+                              size="lg"
+                              className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white border-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 flex-1"
+                              asChild
+                            >
+                              <a href={project.live} target="_blank" rel="noopener noreferrer">
+                                <Eye className="h-4 w-4 mr-2" />
+                                View Live
+                                <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                              </a>
+                            </Button>
+                          )}
+                          {/* Show Source only for project 01 (index === 1) */}
+                          {index === 1 && (
+                            <Button 
+                              variant="outline" 
+                              size="lg"
+                              className="group bg-slate-800/50 backdrop-blur-sm border-slate-600/50 text-slate-300 hover:bg-slate-800/70 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105"
+                              asChild
+                            >
+                              <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                <Github className="h-4 w-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                                Source
+                              </a>
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </div>
