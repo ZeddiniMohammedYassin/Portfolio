@@ -61,7 +61,7 @@ const Hero = () => {
         ref={navRef}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          scrolled ? "bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50 py-3" : "py-5"
+          scrolled || mobileMenuOpen ? "bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50 py-3" : "py-5"
         )}
       >
         <div className="container mx-auto px-6">
@@ -115,7 +115,7 @@ const Hero = () => {
           
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4">
+            <div className="md:hidden mt-4 pb-4 bg-slate-900/80 backdrop-blur-md -mx-6 px-6 pt-4">
               <div className="flex flex-col space-y-3">
                 {navItems.map((item) => (
                   <a
