@@ -56,30 +56,60 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, onImageClick 
 
   return (
     <div className="h-80 lg:h-full relative">
-      <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
-        <div className="flex">
+      <div className="overflow-hidden rounded-2xl h-full" ref={emblaRef}>
+        <div className="flex h-full">
           {images.map((img, idx) => (
-            <div key={idx} className="flex-[0_0_100%] min-w-0 cursor-pointer flex items-center pt-60" onClick={() => onImageClick?.(img, idx)}>
-              <img src={img.src} alt={img.alt} className="w-full h-90 lg:h-full object-cover object-center object-[center_55%] transition-transform duration-700 group-hover:scale-105 rounded-t-2xl" />
+            <div key={idx} className="flex-[0_0_100%] min-w-0 cursor-pointer" onClick={() => onImageClick?.(img, idx)}>
+              {/* Mobile version - centered and contained */}
+              <div className="md:hidden w-full h-80 flex items-center justify-center px-4 py-8 bg-gray-50">
+                <img 
+                  src={img.src} 
+                  alt={img.alt} 
+                  className="max-w-full max-h-full w-auto h-auto object-contain"
+                />
+              </div>
+              {/* Desktop version - original style with pt-60 */}
+              <div className="hidden md:block w-full h-full">
+                <img 
+                  src={img.src} 
+                  alt={img.alt} 
+                  className="w-full h-80 lg:h-full object-cover object-center object-[center_55%] transition-transform duration-700 group-hover:scale-105 rounded-t-2xl" 
+                />
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* nav */}
-      <button aria-label="Previous" onClick={scrollPrev} className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 text-white flex items-center justify-center">
+      {/* Navigation buttons */}
+      <button 
+        aria-label="Previous" 
+        onClick={scrollPrev} 
+        className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors z-10"
+      >
         <ChevronRight className="-scale-x-100 h-4 w-4" />
       </button>
-      <button aria-label="Next" onClick={scrollNext} className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 text-white flex items-center justify-center">
+      <button 
+        aria-label="Next" 
+        onClick={scrollNext} 
+        className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center transition-colors z-10"
+      >
         <ChevronRight className="h-4 w-4" />
       </button>
 
-      {/* dots */}
-      <div className="flex justify-center gap-2 absolute bottom-3 left-1/2 -translate-x-1/2">
-        {images.map((_, idx) => (
-          <button key={idx} onClick={() => scrollTo(idx)} className={`${idx === selectedIndex ? 'w-8 bg-white' : 'w-2 bg-white/40'} h-2 rounded-full transition-all`} aria-label={`Go to slide ${idx + 1}`} />
-        ))}
-      </div>
+      {/* Dots indicator */}
+      {images.length > 1 && (
+        <div className="flex justify-center gap-2 absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+          {images.map((_, idx) => (
+            <button 
+              key={idx} 
+              onClick={() => scrollTo(idx)} 
+              className={`${idx === selectedIndex ? 'w-8 bg-white' : 'w-2 bg-white/40'} h-2 rounded-full transition-all`} 
+              aria-label={`Go to slide ${idx + 1}`} 
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -255,16 +285,15 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="py-12 md:py-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Image Zoom Modal with navigation */}
       {zoomedImage && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={() => setZoomedImage(null)}>
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" onClick={() => setZoomedImage(null)}>
           <div className="relative flex items-center" onClick={e => e.stopPropagation()}>
             {/* Left Arrow: only show if not first image */}
             {zoomedImage.imageIndex > 0 && (
               <button
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 rounded-full p-3 hover:bg-black/80 transition z-10"
-                style={{ left: '-3rem' }}
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 rounded-full p-2 md:p-3 hover:bg-black/80 transition z-10 -ml-8 md:-ml-12"
                 onClick={() => {
                   const { projectIndex, imageIndex } = zoomedImage;
                   if (projectIndex !== undefined && imageIndex > 0) {
@@ -274,16 +303,15 @@ const Projects = () => {
                 }}
                 aria-label="Previous image"
               >
-                <span className="text-white text-3xl">&#8592;</span>
+                <span className="text-white text-2xl md:text-3xl">&#8592;</span>
               </button>
             )}
             {/* Image */}
-            <img src={zoomedImage.src} alt={zoomedImage.alt} className="max-w-[90vw] max-h-[90vh] rounded-2xl shadow-2xl border-4 border-white" />
+            <img src={zoomedImage.src} alt={zoomedImage.alt} className="max-w-[90vw] max-h-[90vh] rounded-xl md:rounded-2xl shadow-2xl border-2 md:border-4 border-white" />
             {/* Right Arrow: only show if not last image */}
             {zoomedImage.imageIndex < projects[zoomedImage.projectIndex].images.length - 1 && (
               <button
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 rounded-full p-3 hover:bg-black/80 transition z-10"
-                style={{ right: '-3rem' }}
+                className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 rounded-full p-2 md:p-3 hover:bg-black/80 transition z-10 -mr-8 md:-mr-12"
                 onClick={() => {
                   const { projectIndex, imageIndex } = zoomedImage;
                   if (projectIndex !== undefined && imageIndex < projects[projectIndex].images.length - 1) {
@@ -293,7 +321,7 @@ const Projects = () => {
                 }}
                 aria-label="Next image"
               >
-                <span className="text-white text-3xl">&#8594;</span>
+                <span className="text-white text-2xl md:text-3xl">&#8594;</span>
               </button>
             )}
             {/* Close Button */}
@@ -314,16 +342,16 @@ const Projects = () => {
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-gradient-to-r from-emerald-500/5 to-teal-500/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Enhanced Section Header */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-12 md:mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 mb-6">
               <Star size={16} className="text-yellow-400" />
               <span className="text-slate-300 text-sm font-medium">Featured Projects</span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 px-4">
               <span className="text-white">Transforming Ideas into</span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
@@ -331,18 +359,18 @@ const Projects = () => {
               </span>
             </h2>
 
-            <p className="text-slate-400 text-xl max-w-3xl mx-auto leading-relaxed">
+            <p className="text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4">
               From enterprise platforms to SaaS solutions, each project showcases
               my commitment to <span className="text-emerald-400 font-medium">performance</span>,
               <span className="text-cyan-400 font-medium"> scalability</span>, and
               <span className="text-blue-400 font-medium"> user experience</span>.
             </p>
 
-            <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto mt-8 rounded-full" />
+            <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto mt-6 md:mt-8 rounded-full" />
           </div>
 
           {/* Enhanced Projects Grid */}
-          <div className="space-y-20">
+          <div className="space-y-12 md:space-y-20">
             {projects.map((project, index) => {
               const isVisible = visibleProjects.has(project.id);
               const isReversed = index % 2 === 1;
@@ -423,18 +451,18 @@ const Projects = () => {
                     </div>
 
                     {/* Content Section */}
-                    <div className="lg:w-1/2 p-8 lg:p-12">
-                      <div className="space-y-8">
+                    <div className="lg:w-1/2 p-6 sm:p-8 lg:p-12">
+                      <div className="space-y-6 md:space-y-8">
                         {/* Header */}
                         <div>
-                          <div className="flex items-start justify-between mb-4">
-                            <div>
-                              <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors duration-300">
+                          <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-3">
+                            <div className="flex-1">
+                              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors duration-300">
                                 {project.title}
                               </h3>
-                              <p className="text-slate-300 text-lg">{project.subtitle}</p>
+                              <p className="text-slate-300 text-base sm:text-lg">{project.subtitle}</p>
                             </div>
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 flex-wrap">
                               {project.tags.map((tag) => (
                                 <span
                                   key={tag}
@@ -445,32 +473,32 @@ const Projects = () => {
                               ))}
                             </div>
                           </div>
-                          <p className="text-slate-400 leading-relaxed text-lg">
+                          <p className="text-slate-400 leading-relaxed text-base sm:text-lg">
                             {project.description}
                           </p>
                         </div>
 
                         {/* Enhanced Metrics */}
-                        <div className="grid grid-cols-3 gap-6">
+                        <div className="grid grid-cols-3 gap-3 sm:gap-6">
                           {Object.entries(project.metrics).map(([key, value]) => (
-                            <div key={key} className={`text-center p-4 rounded-lg ${colors.bg} ${colors.border} border group-hover:scale-105 transition-transform duration-300`}>
-                              <div className={`font-bold text-2xl mb-1 ${colors.text}`}>{value}</div>
-                              <div className="text-slate-400 text-sm">{project.metricLabels[key]}</div>
+                            <div key={key} className={`text-center p-3 sm:p-4 rounded-lg ${colors.bg} ${colors.border} border group-hover:scale-105 transition-transform duration-300`}>
+                              <div className={`font-bold text-xl sm:text-2xl mb-1 ${colors.text}`}>{value}</div>
+                              <div className="text-slate-400 text-xs sm:text-sm">{project.metricLabels[key]}</div>
                             </div>
                           ))}
                         </div>
 
                         {/* Tech Stack with Icons */}
                         <div>
-                          <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                          <h4 className="font-semibold text-white mb-3 sm:mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
                             <Code2 size={16} className="text-emerald-400" />
                             Tech Stack
                           </h4>
-                          <div className="flex flex-wrap gap-3">
+                          <div className="flex flex-wrap gap-2 sm:gap-3">
                             {project.techStack.map((tech) => (
                               <span
                                 key={tech}
-                                className="px-4 py-2 rounded-lg bg-slate-700/50 backdrop-blur-sm border border-slate-600/50 text-slate-300 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105"
+                                className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-slate-700/50 backdrop-blur-sm border border-slate-600/50 text-slate-300 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105 text-sm"
                               >
                                 {tech}
                               </span>
@@ -480,7 +508,7 @@ const Projects = () => {
 
                         {/* Key Features */}
                         <div>
-                          <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                          <h4 className="font-semibold text-white mb-3 sm:mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
                             <Zap size={16} className="text-cyan-400" />
                             Key Features
                           </h4>
@@ -495,12 +523,12 @@ const Projects = () => {
                         </div>
 
                         {/* Enhanced Actions */}
-                        <div className="flex gap-4 pt-4">
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
                           {/* Show View Live only for project 02 (index === 0) */}
                           {index === 0 && (
                             <Button
                               size="lg"
-                              className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white border-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 flex-1"
+                              className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white border-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 flex-1 w-full sm:w-auto"
                               asChild
                             >
                               <a href={project.live} target="_blank" rel="noopener noreferrer">
@@ -515,7 +543,7 @@ const Projects = () => {
                             <Button
                               variant="outline"
                               size="lg"
-                              className="group bg-slate-800/50 backdrop-blur-sm border-slate-600/50 text-slate-300 hover:bg-slate-800/70 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105"
+                              className="group bg-slate-800/50 backdrop-blur-sm border-slate-600/50 text-slate-300 hover:bg-slate-800/70 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                               asChild
                             >
                               <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -530,7 +558,7 @@ const Projects = () => {
                   </div>
 
                   {/* Project Number */}
-                  <div className={`absolute -top-4 ${isReversed ? 'left-8' : 'right-8'} text-8xl font-bold ${colors.text} opacity-10 select-none`}>
+                  <div className={`absolute -top-4 ${isReversed ? 'left-4 sm:left-8' : 'right-4 sm:right-8'} text-6xl sm:text-8xl font-bold ${colors.text} opacity-10 select-none`}>
                     0{index + 1}
                   </div>
                 </div>
