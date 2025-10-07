@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Users, Workflow, ChevronRight, Star, TrendingUp, Zap, Award, Eye, Code2, ZoomIn } from "lucide-react";
 import InTurn0 from "@/assets/InTurn/0.webp";
@@ -26,6 +26,63 @@ import Warcha11 from "@/assets/Warcha/11.png";
 import Warcha12 from "@/assets/Warcha/12.png";
 import Warcha13 from "@/assets/Warcha/13.png";
 import Warcha14 from "@/assets/Warcha/14.png";
+import useEmblaCarousel from 'embla-carousel-react';
+
+// Small Embla-based carousel for project images
+interface ProjectCarouselProps {
+  images: { src: string; alt?: string }[];
+  onImageClick?: (img: { src: string; alt?: string }, index: number) => void;
+}
+
+const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, onImageClick }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'center' });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi, onSelect]);
+
+  return (
+    <div className="h-80 lg:h-full relative">
+      <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
+        <div className="flex">
+          {images.map((img, idx) => (
+            <div key={idx} className="flex-[0_0_100%] min-w-0 cursor-pointer flex items-center pt-60" onClick={() => onImageClick?.(img, idx)}>
+              <img src={img.src} alt={img.alt} className="w-full h-90 lg:h-full object-cover object-center object-[center_55%] transition-transform duration-700 group-hover:scale-105 rounded-t-2xl" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* nav */}
+      <button aria-label="Previous" onClick={scrollPrev} className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 text-white flex items-center justify-center">
+        <ChevronRight className="-scale-x-100 h-4 w-4" />
+      </button>
+      <button aria-label="Next" onClick={scrollNext} className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 text-white flex items-center justify-center">
+        <ChevronRight className="h-4 w-4" />
+      </button>
+
+      {/* dots */}
+      <div className="flex justify-center gap-2 absolute bottom-3 left-1/2 -translate-x-1/2">
+        {images.map((_, idx) => (
+          <button key={idx} onClick={() => scrollTo(idx)} className={`${idx === selectedIndex ? 'w-8 bg-white' : 'w-2 bg-white/40'} h-2 rounded-full transition-all`} aria-label={`Go to slide ${idx + 1}`} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Projects = () => {
   const [visibleProjects, setVisibleProjects] = useState(new Set());
@@ -33,7 +90,7 @@ const Projects = () => {
   const [zoomedImage, setZoomedImage] = useState(null); // {src, alt, projectIndex, imageIndex}
   const projectRefs = useRef([]);
   const sectionRef = useRef(null);
-  const projects = [
+  const projects = useMemo(() => [
     {
       id: 2,
       title: "Warcha SaaS",
@@ -45,7 +102,7 @@ const Projects = () => {
       features: [
         "Drag-and-drop workflow builder",
         "QR code tracking for repair items",
-        "Automated invoice generation", 
+        "Automated invoice generation",
         "Multi-tenant architecture",
         "Real-time collaboration tools"
       ],
@@ -67,21 +124,21 @@ const Projects = () => {
       status: "Live",
       year: "2025",
       images: [
-                { src: Warcha0, alt: "Warcha Platform 1" },
-                { src: Warcha1, alt: "Warcha Platform 2" },
-                { src: Warcha2, alt: "Warcha Platform 3" },
-                { src: Warcha3, alt: "Warcha Platform 4" },
-                { src: Warcha4, alt: "Warcha Platform 5" },
-                { src: Warcha5, alt: "Warcha Platform 6" },
-                { src: Warcha6, alt: "Warcha Platform 7" },
-                { src: Warcha7, alt: "Warcha Platform 8" },
-                { src: Warcha8, alt: "Warcha Platform 9" },
-                { src: Warcha9, alt: "Warcha Platform 10" },
-                { src: Warcha10, alt: "Warcha Platform 11" },
-                { src: Warcha11, alt: "Warcha Platform 12" },
-                { src: Warcha12, alt: "Warcha Platform 13" },
-                { src: Warcha13, alt: "Warcha Platform 14" },
-                { src: Warcha14, alt: "Warcha Platform 15" },
+        { src: Warcha0, alt: "Warcha Platform 1" },
+        { src: Warcha1, alt: "Warcha Platform 2" },
+        { src: Warcha2, alt: "Warcha Platform 3" },
+        { src: Warcha3, alt: "Warcha Platform 4" },
+        { src: Warcha4, alt: "Warcha Platform 5" },
+        { src: Warcha5, alt: "Warcha Platform 6" },
+        { src: Warcha6, alt: "Warcha Platform 7" },
+        { src: Warcha7, alt: "Warcha Platform 8" },
+        { src: Warcha8, alt: "Warcha Platform 9" },
+        { src: Warcha9, alt: "Warcha Platform 10" },
+        { src: Warcha10, alt: "Warcha Platform 11" },
+        { src: Warcha11, alt: "Warcha Platform 12" },
+        { src: Warcha12, alt: "Warcha Platform 13" },
+        { src: Warcha13, alt: "Warcha Platform 14" },
+        { src: Warcha14, alt: "Warcha Platform 15" },
       ]
     },
     {
@@ -94,7 +151,7 @@ const Projects = () => {
       techStack: ["Node.js", "Express.js", "MySQL", "React", "REST API"],
       features: [
         "Student application portal with document upload",
-        "Mentor dashboard for intern evaluation", 
+        "Mentor dashboard for intern evaluation",
         "Admin panel for program management",
         "Real-time notifications and updates",
         "Advanced reporting and analytics"
@@ -129,7 +186,7 @@ const Projects = () => {
         { src: InTurn9, alt: "Inturn Platform 10" },
       ]
     }
-  ];
+  ], []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -160,8 +217,12 @@ const Projects = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const projectId = parseInt(entry.target.dataset.projectId);
-          setVisibleProjects(prev => new Set([...prev, projectId]));
+          const target = entry.target as HTMLElement;
+          const pid = target.dataset?.projectId;
+          if (pid) {
+            const projectId = parseInt(pid);
+            setVisibleProjects(prev => new Set([...prev, projectId]));
+          }
         }
       });
     }, observerOptions);
@@ -261,7 +322,7 @@ const Projects = () => {
               <Star size={16} className="text-yellow-400" />
               <span className="text-slate-300 text-sm font-medium">Featured Projects</span>
             </div>
-            
+
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="text-white">Transforming Ideas into</span>
               <br />
@@ -269,14 +330,14 @@ const Projects = () => {
                 Scalable Solutions
               </span>
             </h2>
-            
+
             <p className="text-slate-400 text-xl max-w-3xl mx-auto leading-relaxed">
-              From enterprise platforms to SaaS solutions, each project showcases 
-              my commitment to <span className="text-emerald-400 font-medium">performance</span>, 
-              <span className="text-cyan-400 font-medium"> scalability</span>, and 
+              From enterprise platforms to SaaS solutions, each project showcases
+              my commitment to <span className="text-emerald-400 font-medium">performance</span>,
+              <span className="text-cyan-400 font-medium"> scalability</span>, and
               <span className="text-blue-400 font-medium"> user experience</span>.
             </p>
-            
+
             <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto mt-8 rounded-full" />
           </div>
 
@@ -286,69 +347,30 @@ const Projects = () => {
               const isVisible = visibleProjects.has(project.id);
               const isReversed = index % 2 === 1;
               const colors = getColorClasses(project.accentColor);
-              
+
               return (
                 <div
                   key={project.id}
                   ref={(el) => (projectRefs.current[index] = el)}
                   data-project-id={project.id}
-                  className={`group relative transition-all duration-1000 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                  }`}
+                  className={`group relative transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                    }`}
                   style={{ transitionDelay: `${index * 200}ms` }}
                   onMouseEnter={() => setActiveProject(project.id)}
                   onMouseLeave={() => setActiveProject(null)}
                 >
                   {/* Project Card */}
-                  <div className={`bg-slate-800/30 backdrop-blur-sm border border-slate-700/30 rounded-2xl overflow-hidden hover:border-slate-600/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-${project.accentColor}-500/10 ${
-                    isReversed ? 'lg:flex-row-reverse' : ''
-                  } lg:flex`}>
-                    
+                  <div className={`bg-slate-800/30 backdrop-blur-sm border border-slate-700/30 rounded-2xl overflow-hidden hover:border-slate-600/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-${project.accentColor}-500/10 ${isReversed ? 'lg:flex-row-reverse' : ''
+                    } lg:flex`}>
+
                     {/* Visual Section */}
                     <div className="lg:w-1/2 relative">
-                      {project.id === 1 || project.id === 2 ? (
-                        /* Project-specific image */
-                        <div className="h-80 lg:h-full relative overflow-hidden cursor-pointer group/image" onClick={() => setZoomedImage({
-                          ...project.images[0],
-                          projectIndex: index,
-                          imageIndex: 0
-                        })}>
-                          <img 
-                            src={project.images[0].src}
-                            alt={project.images[0].alt}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                          />
-                          
-                          {/* Dark overlay for better contrast */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-transparent to-slate-900/60 group-hover/image:from-slate-900/20 transition-all duration-500" />
-                          
-                          {/* Zoom indicator - always visible */}
-                          <div className="absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-300">
-                            <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
-                              <ZoomIn className="h-8 w-8 text-white" />
-                            </div>
-                          </div>
-                          
-                          {/* Floating Elements */}
-                          <div className="absolute top-4 right-4 flex gap-2 z-10">
-                            <div className="px-3 py-1 rounded-full bg-emerald-500/90 backdrop-blur-sm text-white text-xs font-medium">
-                              {project.status}
-                            </div>
-                            <div className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-medium">
-                              {project.year}
-                            </div>
-                          </div>
-
-                          {/* Project Title Overlay */}
-                          <div className="absolute bottom-6 left-6 z-10">
-                            <h3 className="text-white font-bold text-2xl mb-2 drop-shadow-2xl">{project.title}</h3>
-                            <p className="text-white/90 text-lg drop-shadow-lg">{project.subtitle}</p>
-                            <p className="text-white/70 text-sm mt-1 drop-shadow-md">Click to view full size</p>
-                          </div>
-
-                          {/* Corner Decoration */}
-                          <div className="absolute bottom-0 right-0 w-20 h-20 bg-emerald-500/10 transform rotate-45 translate-x-10 translate-y-10" />
-                        </div>
+                      {project.images && project.images.length > 0 ? (
+                        /* Use Embla carousel for projects with images */
+                        <ProjectCarousel
+                          images={project.images}
+                          onImageClick={(img, imageIndex) => setZoomedImage({ ...img, projectIndex: index, imageIndex })}
+                        />
                       ) : (
                         /* Other Projects with Original Design */
                         <div className={`h-80 lg:h-full bg-gradient-to-br ${project.primaryColor} relative overflow-hidden`}>
@@ -356,10 +378,10 @@ const Projects = () => {
                           <div className="absolute inset-0 opacity-20">
                             <div className="grid grid-cols-12 grid-rows-12 h-full w-full gap-1 p-4">
                               {Array.from({ length: 144 }).map((_, i) => (
-                                <div 
-                                  key={i} 
+                                <div
+                                  key={i}
                                   className="bg-white rounded-sm opacity-30 animate-pulse"
-                                  style={{ 
+                                  style={{
                                     animationDelay: `${i * 20}ms`,
                                     animationDuration: '3s'
                                   }}
@@ -367,7 +389,7 @@ const Projects = () => {
                               ))}
                             </div>
                           </div>
-                          
+
                           {/* Floating Elements */}
                           <div className="absolute top-4 right-4 flex gap-2">
                             <div className={`px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-medium ${colors.text}`}>
@@ -476,7 +498,7 @@ const Projects = () => {
                         <div className="flex gap-4 pt-4">
                           {/* Show View Live only for project 02 (index === 0) */}
                           {index === 0 && (
-                            <Button 
+                            <Button
                               size="lg"
                               className="group bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white border-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 flex-1"
                               asChild
@@ -490,8 +512,8 @@ const Projects = () => {
                           )}
                           {/* Show Source only for project 01 (index === 1) */}
                           {index === 1 && (
-                            <Button 
-                              variant="outline" 
+                            <Button
+                              variant="outline"
                               size="lg"
                               className="group bg-slate-800/50 backdrop-blur-sm border-slate-600/50 text-slate-300 hover:bg-slate-800/70 hover:border-emerald-400/50 hover:text-emerald-400 transition-all duration-300 hover:scale-105"
                               asChild
@@ -516,7 +538,7 @@ const Projects = () => {
             })}
           </div>
 
-          
+
         </div>
       </div>
     </section>

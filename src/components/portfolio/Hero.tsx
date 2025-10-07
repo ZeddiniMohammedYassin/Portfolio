@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, ChevronDown, Code, Database, Globe, ArrowRight, Download } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown, Code, Database, Globe, ArrowRight, Download, Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -13,8 +17,17 @@ const Hero = () => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const scrollToSection = (sectionId) => {
@@ -27,8 +40,115 @@ const Hero = () => {
     { icon: Globe, label: "Full Stack", delay: "200ms" }
   ];
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const navItems = [
+    { name: 'Home', href: '#', onClick: scrollToTop },
+    { name: 'About', href: '#about' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Navbar */}
+      <header 
+        ref={navRef}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          scrolled ? "bg-slate-900/80 backdrop-blur-md border-b border-slate-800/50 py-3" : "py-5"
+        )}
+      >
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <a 
+              href="#" 
+              className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent"
+            >
+              Mohamed Yessin Zeddini
+            </a>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-slate-300 hover:text-emerald-400 text-sm font-medium transition-colors duration-300 relative group"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (item.onClick) {
+                      item.onClick();
+                    } else {
+                      scrollToSection(item.href.replace('#', ''));
+                    }
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              ))}
+              <Button 
+                className="ml-4 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 border-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25"
+                onClick={() => scrollToSection('contact')}
+              >
+                Let's Talk
+              </Button>
+            </nav>
+            
+            {/* Mobile menu button */}
+            <button 
+              className="md:hidden p-2 text-slate-300 hover:text-emerald-400 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+          
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4">
+              <div className="flex flex-col space-y-3">
+                {navItems.map((item) => (
+                  <a
+                    key={`mobile-${item.name}`}
+                    href={item.href}
+                    className="block px-3 py-2 text-slate-300 hover:text-emerald-400 rounded-md hover:bg-slate-800/50 transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (item.onClick) {
+                        item.onClick();
+                      } else {
+                        scrollToSection(item.href.replace('#', ''));
+                      }
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                <Button 
+                  className="mt-2 w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600"
+                  onClick={() => {
+                    scrollToSection('contact');
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Let's Talk
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </header>
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         {/* Grid Pattern */}
@@ -48,7 +168,7 @@ const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center">
+      <div className="relative z-10 container mx-auto px-6 text-center pt-24 md:pt-0">
         <div className="max-w-5xl mx-auto">
           {/* Animated Badge */}
           <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
