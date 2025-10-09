@@ -116,8 +116,13 @@ const Contact = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.2 }
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { 
+        threshold: 0.1, // Lower threshold for better mobile detection
+        rootMargin: '0px 0px -50px 0px' // Trigger slightly before the element is in view
+      }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -129,6 +134,7 @@ const Contact = () => {
     window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
       observer.disconnect();
       window.removeEventListener('mousemove', handleMouseMove);
     };
@@ -183,7 +189,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-gradient-to-b from-slate-800 via-slate-900 to-black relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-12 md:py-20 bg-gradient-to-b from-slate-800 via-slate-900 to-black relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:5rem_5rem] opacity-10" />
@@ -204,7 +210,7 @@ const Contact = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Enhanced Section Header */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-12 md:mb-20 px-4">
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <Heart size={16} className="text-pink-400 animate-pulse" />
               <span className="text-slate-300 text-sm font-medium">Let's Connect</span>
@@ -218,7 +224,7 @@ const Contact = () => {
               </span>
             </h2>
             
-            <p className={`text-slate-400 text-xl max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <p className={`text-slate-400 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               I'm actively seeking internship opportunities where I can contribute my technical skills, 
               learn from experienced developers, and help build amazing products. Let's discuss how I can add value to your team!
             </p>
@@ -226,7 +232,7 @@ const Contact = () => {
             <div className={`w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 mx-auto mt-8 rounded-full transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`} />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start px-4 sm:px-6">
             {/* Enhanced Contact Methods */}
             <div className={`space-y-8 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
               <div>
@@ -234,13 +240,13 @@ const Contact = () => {
                   <MessageCircle className="text-emerald-400" size={28} />
                   Get In Touch
                 </h3>
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {contactMethods.map((method, index) => {
                     const colors = getColorClasses(method.color);
                     return (
                       <div
                         key={method.title}
-                        className={`group p-6 rounded-2xl bg-slate-800/30 backdrop-blur-sm border ${colors.border} ${colors.hover} transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${colors.glow} cursor-pointer relative overflow-hidden`}
+                        className={`group p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-slate-800/30 backdrop-blur-sm border ${colors.border} ${colors.hover} transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${colors.glow} cursor-pointer relative overflow-hidden`}
                         onClick={() => window.open(method.action, '_blank')}
                         onMouseEnter={() => setHoveredCard(index)}
                         onMouseLeave={() => setHoveredCard(null)}
@@ -250,8 +256,8 @@ const Contact = () => {
                         
                         <div className="relative z-10">
                           <div className="flex items-start gap-5">
-                            <div className={`p-4 rounded-xl ${colors.bg} group-hover:scale-110 transition-transform duration-500 relative`}>
-                              <method.icon className={`h-7 w-7 ${colors.text} group-hover:rotate-12 transition-transform duration-500`} />
+                            <div className={`p-3 sm:p-4 rounded-lg sm:rounded-xl ${colors.bg} group-hover:scale-110 transition-transform duration-500 relative`}>
+                              <method.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${colors.text} group-hover:rotate-12 transition-transform duration-500`} />
                               
                               {hoveredCard === index && (
                                 <div className="absolute inset-0 rounded-xl bg-white/10 animate-ping" />
@@ -261,27 +267,27 @@ const Contact = () => {
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-3">
-                                  <h4 className="font-bold text-xl text-white group-hover:text-emerald-400 transition-colors duration-300">
+                                  <h4 className="font-bold text-lg sm:text-xl text-white group-hover:text-emerald-400 transition-colors duration-300">
                                     {method.title}
                                   </h4>
-                                  <div className={`px-2 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.text}`}>
+                                  <div className={`px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium ${colors.bg} ${colors.text}`}>
                                     {method.priority}
                                   </div>
                                 </div>
                                 <ExternalLink className="h-5 w-5 text-slate-500 group-hover:text-emerald-400 group-hover:scale-110 transition-all duration-300" />
                               </div>
                               
-                              <p className={`font-mono text-sm mb-2 ${colors.text} group-hover:text-white transition-colors duration-300`}>
+                              <p className={`font-mono text-xs sm:text-sm mb-1 sm:mb-2 ${colors.text} group-hover:text-white transition-colors duration-300 break-all`}>
                                 {method.displayValue}
                               </p>
                               
-                              <p className="text-slate-400 text-sm mb-3 leading-relaxed">
+                              <p className="text-slate-400 text-xs sm:text-sm mb-2 sm:mb-3 leading-relaxed">
                                 {method.description}
                               </p>
                               
-                              <div className="flex items-center gap-2">
-                                <Clock size={14} className="text-slate-500" />
-                                <span className="text-xs text-slate-500">Response time: {method.responseTime}</span>
+                              <div className="flex items-center gap-1.5">
+                                <Clock size={12} className="text-slate-500 flex-shrink-0" />
+                                <span className="text-[10px] sm:text-xs text-slate-500">Response: {method.responseTime}</span>
                               </div>
                             </div>
                           </div>
