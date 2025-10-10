@@ -33,44 +33,36 @@ const Contact = () => {
       title: "Email",
       value: "mohamedyassin.zeddini@ieee.org",
       displayValue: "mohamedyassin.zeddini@ieee.org",
-      description: "Best for internship applications & detailed discussions",
       action: "mailto:mohamedyassin.zeddini@ieee.org",
       color: "emerald",
       priority: "Primary",
-      responseTime: "< 6 hours"
     },
     {
       icon: Linkedin,
       title: "LinkedIn",
       value: "https://linkedin.com/in/zeddini-mohamed-yassin",
       displayValue: "/in/zeddini-mohamed-yassin",
-      description: "Professional networking & career opportunities",
       action: "https://linkedin.com/in/zeddini-mohamed-yassin",
       color: "blue",
       priority: "Professional",
-      responseTime: "< 12 hours"
     },
     {
       icon: Github,
       title: "GitHub",
       value: "https://github.com/ZeddiniMohammedYassin",
       displayValue: "/ZeddiniMohammedYassin",
-      description: "Code portfolio & open source contributions",
       action: "https://github.com/ZeddiniMohammedYassin",
       color: "slate",
       priority: "Technical",
-      responseTime: "Always Open"
     },
     {
       icon: Phone,
       title: "WhatsApp",
       value: "+216 92 945 903",
       displayValue: "+216 92 945 903",
-      description: "Quick questions & immediate communication",
       action: "https://wa.me/21692945903",
       color: "green",
       priority: "Urgent",
-      responseTime: "< 2 hours"
     }
   ];
 
@@ -79,13 +71,13 @@ const Contact = () => {
       icon: MapPin,
       title: "Location",
       value: "Tunis, Tunisia",
-      description: "Available for remote & on-site",
+      description: "Available  to relocate",
       color: "red"
     },
     {
       icon: Calendar,
       title: "Availability",
-      value: "Immediate Start",
+      value: "Feb-March 2026",
       description: "Ready for internship opportunities",
       color: "emerald"
     },
@@ -280,15 +272,6 @@ const Contact = () => {
                               <p className={`font-mono text-xs sm:text-sm mb-1 sm:mb-2 ${colors.text} group-hover:text-white transition-colors duration-300 break-all`}>
                                 {method.displayValue}
                               </p>
-                              
-                              <p className="text-slate-400 text-xs sm:text-sm mb-2 sm:mb-3 leading-relaxed">
-                                {method.description}
-                              </p>
-                              
-                              <div className="flex items-center gap-1.5">
-                                <Clock size={12} className="text-slate-500 flex-shrink-0" />
-                                <span className="text-[10px] sm:text-xs text-slate-500">Response: {method.responseTime}</span>
-                              </div>
                             </div>
                           </div>
                         </div>

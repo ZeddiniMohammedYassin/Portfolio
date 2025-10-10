@@ -116,23 +116,24 @@ const About = () => {
                     <span className="text-emerald-400 font-semibold"> third-year Computer Science student
                       </span> with a strong interest in software development and problem solving.<br /> <br /> My background in  
                     <span className="text-cyan-400 font-semibold"> competitive programming </span>
-                    has strengthened my ability to design 
-                    <span className="text-cyan-400 font-semibold"> efficient solutions </span>
-                    , while my academic and personal projects have allowed me to apply these skills in practice.<br /> <br /> I have worked on full-stack applications, paying particular attention to 
+                    has taught me how to design 
+                    <span className="text-cyan-400 font-semibold"> effective solutions </span>
+                    , and my academic and personal projects have given me the chance to apply these skills in real scenarios.
+<br /> <br /> I have worked on full-stack applications, with a focus on 
                     <span className="text-cyan-400 font-semibold"> backend performance </span>
-                    and the design of reliable database systems. Through these experiences, I have gained proficiency in
-                    <span className="text-white font-medium"> Node.js, Express, and relational databases.</span> <br /> <br /> I am motivated to expand my knowledge further through an internship opportunity, where I can contribute to meaningful projects while continuing to develop my technical and professional skills.
+                    and the design of robust database systems. Through these projects, I have developed proficiency in
+                    <span className="text-white font-medium"> Node.js, Express, and relational databases.</span> <br /> <br /> I am looking forward to an internship where I can work on meaningful projects and continue to grow my technical and professional skills.
                   </p>
                   {/* Back */}
                   <p className="leading-relaxed">
-                     <span className="text-white font-medium"></span>  
-                     <span className="text-purple-400 font-semibold"></span> 
+                    <span className="text-white font-medium"></span>  
+                    <span className="text-purple-400 font-semibold"></span> 
                   </p>
                   
                   <div className="flex items-center gap-2 mt-6 p-4 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 rounded-lg border border-emerald-500/20">
                     <Rocket className="text-emerald-400" size={20} />
                     <span className="text-emerald-400 font-medium text-sm">
-                      Eager to contribute to innovative projects and grow alongside experienced developers
+                      Aiming to contribute to innovative projects and grow alongside experienced developers.
                     </span>
                   </div>
                 </div>
