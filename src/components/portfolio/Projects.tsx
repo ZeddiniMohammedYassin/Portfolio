@@ -352,10 +352,10 @@ const Projects = () => {
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 px-4">
-              <span className="text-white">Transforming Ideas into</span>
+              <span className="text-white">Building </span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                Scalable Solutions
+                Real Applications
               </span>
             </h2>
 

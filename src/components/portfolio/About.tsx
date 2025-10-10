@@ -91,10 +91,10 @@ const About = () => {
             </h2>
             
             <p className={`text-slate-400 text-xl max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              Backend-focused developer with competitive programming mindset, 
-              seeking internship opportunities to apply my skills in 
-              <span className="text-emerald-400 font-medium"> real-world projects</span> and 
-              <span className="text-cyan-400 font-medium"> contribute to innovative teams</span>.
+              Looking for  
+              <span className="text-emerald-400 font-medium"> internships </span> to apply    
+              <span className="text-cyan-400 font-medium"> backend development skills</span> and contribute to  
+              <span className="text-cyan-400 font-medium"> meaningful projects</span> in a team environment.
             </p>
           </div>
 

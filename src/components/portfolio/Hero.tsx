@@ -203,9 +203,11 @@ const Hero = () => {
           
           {/* Enhanced Description */}
           <p className={`text-xl text-slate-400 mb-8 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            Backend-focused developer passionate about building scalable web applications. 
-            <span className="text-emerald-400 font-medium"> Competitive programming enthusiast</span> with 
-            expertise in transforming complex business requirements into efficient, maintainable solutions.
+            Full-Stack developer with a growing interest in
+            <span className="text-cyan-400 font-medium"> web development </span>and
+            <span className="text-cyan-400 font-medium"> system design</span>. Experienced in programming challenges that strengthen logical thinking and
+            <span className="text-emerald-400 font-medium"> problem-solving </span>  skills.
+            
           </p>
           
           {/* Skills Pills */}
