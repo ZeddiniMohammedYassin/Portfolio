@@ -56,25 +56,27 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images, onImageClick 
 
   return (
     <div className="h-80 lg:h-full relative">
-      <div className="overflow-hidden rounded-2xl h-full" ref={emblaRef}>
-        <div className="flex h-full">
+      {/* Framed gallery similar to Certifications.tsx */}
+      <div className="overflow-hidden rounded-2xl border border-slate-700/30 bg-slate-800/20 backdrop-blur-sm shadow-2xl shadow-emerald-500/8" ref={emblaRef}>
+        <div className="flex">
           {images.map((img, idx) => (
-            <div key={idx} className="flex-[0_0_100%] min-w-0 cursor-pointer" onClick={() => onImageClick?.(img, idx)}>
-              {/* Mobile version - centered and contained */}
-              <div className="md:hidden w-full h-80 flex items-center justify-center px-4 py-8 bg-gray-50">
-                <img 
-                  src={img.src} 
-                  alt={img.alt} 
-                  className="max-w-full max-h-full w-auto h-auto object-contain"
+            <div key={idx} className="flex-[0_0_100%] min-w-0 cursor-pointer p-4 md:p-8" onClick={() => onImageClick?.(img, idx)}>
+              <div className="relative aspect-[16/10] bg-gradient-to-br from-slate-900/40 to-slate-800/10 rounded-xl overflow-hidden">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full object-contain rounded-xl transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
-              {/* Desktop version - original style with pt-60 */}
-              <div className="hidden md:block w-full h-full">
-                <img 
-                  src={img.src} 
-                  alt={img.alt} 
-                  className="w-full h-80 lg:h-full object-cover object-center object-[center_55%] transition-transform duration-700 group-hover:scale-105 rounded-t-2xl" 
-                />
+
+                {/* subtle overlay for depth */}
+                <div className="absolute inset-0 rounded-xl pointer-events-none bg-gradient-to-b from-transparent to-slate-900/30" />
+
+                {/* Floating label (optional on project images) */}
+                {img.alt && (
+                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-slate-100 text-xs font-medium">
+                    {img.alt}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -137,14 +139,14 @@ const Projects = () => {
         "Real-time collaboration tools"
       ],
       metrics: {
-        clients: "100+",
-        efficiency: "40%",
-        automation: "85%"
+        clients: "Capstone Project",
+        efficiency: "Built End-to-End",
+        automation: "Production Ready"
       },
       metricLabels: {
-        clients: "Active Shops",
-        efficiency: "Time Saved ↓",
-        automation: "Process Automation"
+        clients: "Built During Internship",
+        efficiency: "Full SaaS",
+        automation: "Stable and Hosted for Use"
       },
       icon: Workflow,
       primaryColor: "from-emerald-500 to-teal-600",
@@ -187,14 +189,14 @@ const Projects = () => {
         "Advanced reporting and analytics"
       ],
       metrics: {
-        users: "500+",
-        performance: "60%",
-        uptime: "99.9%"
+        users: "2 Months",
+        performance: "3+",
+        uptime: "100%"
       },
       metricLabels: {
-        users: "Active Users",
-        performance: "Query Speed ↑",
-        uptime: "System Uptime"
+        users: "Development Timeline",
+        performance: "Internship Programs Simulated",
+        uptime: "Functional Prototype"
       },
       icon: Users,
       primaryColor: "from-blue-500 to-purple-600",
@@ -392,13 +394,15 @@ const Projects = () => {
                     } lg:flex`}>
 
                     {/* Visual Section */}
-                    <div className="lg:w-1/2 relative">
+                    <div className="lg:w-1/2 relative flex items-center">
                       {project.images && project.images.length > 0 ? (
                         /* Use Embla carousel for projects with images */
-                        <ProjectCarousel
-                          images={project.images}
-                          onImageClick={(img, imageIndex) => setZoomedImage({ ...img, projectIndex: index, imageIndex })}
-                        />
+                        <div className="w-full mt-6 lg:mt-0">
+                          <ProjectCarousel
+                            images={project.images}
+                            onImageClick={(img, imageIndex) => setZoomedImage({ ...img, projectIndex: index, imageIndex })}
+                          />
+                        </div>
                       ) : (
                         /* Other Projects with Original Design */
                         <div className={`h-80 lg:h-full bg-gradient-to-br ${project.primaryColor} relative overflow-hidden`}>
@@ -479,11 +483,11 @@ const Projects = () => {
                         </div>
 
                         {/* Enhanced Metrics */}
-                        <div className="grid grid-cols-3 gap-3 sm:gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
                           {Object.entries(project.metrics).map(([key, value]) => (
-                            <div key={key} className={`text-center p-3 sm:p-4 rounded-lg ${colors.bg} ${colors.border} border group-hover:scale-105 transition-transform duration-300`}>
-                              <div className={`font-bold text-xl sm:text-2xl mb-1 ${colors.text}`}>{value}</div>
-                              <div className="text-slate-400 text-xs sm:text-sm">{project.metricLabels[key]}</div>
+                            <div key={key} className={`flex flex-col items-center justify-center text-center p-3 sm:p-4 lg:p-3 rounded-lg min-h-[90px] lg:min-h-[80px] min-w-[10rem] lg:min-w-[10rem] ${colors.bg} ${colors.border} border group-hover:scale-105 transition-transform duration-300`}>
+                              <div className={`font-semibold text-sm sm:text-base lg:text-sm mb-1 ${colors.text} leading-tight`} style={{wordBreak: 'normal', hyphens: 'none'}}>{value}</div>
+                              <div className="text-slate-400 text-xs sm:text-sm lg:text-xs leading-normal" style={{wordBreak: 'normal', whiteSpace: 'normal'}}>{project.metricLabels[key]}</div>
                             </div>
                           ))}
                         </div>
