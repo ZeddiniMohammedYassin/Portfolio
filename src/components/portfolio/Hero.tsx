@@ -251,7 +251,7 @@ const Hero = () => {
             >
               <Download size={16} className="mr-2 group-hover:translate-y-1 transition-transform duration-300" />
               <a 
-                href="/resume.pdf" 
+                href="/MohamedYessin_Zeddini_Resume.pdf" 
                 download 
               >
               Resume
