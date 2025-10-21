@@ -130,7 +130,7 @@ const Projects = () => {
       description: "Revolutionary SaaS platform for repair shops featuring drag-and-drop workflow editor, QR tracking system, automated invoicing, and backend process automation with Supabase integration.",
       longDescription: "Led backend development for a multi-tenant SaaS platform serving 100+ repair shops. Implemented complex workflow automation, integrated payment processing, and built a sophisticated QR-based tracking system that reduced service time by 40%.",
       tags: ["SaaS", "Automation", "Fullstack"],
-      techStack: ["React", "TypeScript", "Supabase", "Node.js", "QR Integration"],
+      techStack: ["TypeScript", "React", "Supabase", "Tailwind CSS", "Express.js"],
       features: [
         "Drag-and-drop workflow builder",
         "QR code tracking for repair items",

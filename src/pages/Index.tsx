@@ -13,7 +13,7 @@ import Cert3 from "@/assets/Certifications/3.jpg";
 import Cert4 from "@/assets/Certifications/4.png";
 
 const certificationsData = [
-  { id: "cert-0", title: "CodeAlpha Internship Certificate", image: Cert0 },
+  { id: "cert-0", title: "Redig Internship Certificate", image: Cert0 },
   { id: "cert-1", title: "CodeAlpha Internship Certificate", image: Cert1 },
   { id: "cert-2", title: "Ieeextreme Participation Certificate", image: Cert2 },
   { id: "cert-3", title: "Winter Cup Participation Certificate", image: Cert3 },
